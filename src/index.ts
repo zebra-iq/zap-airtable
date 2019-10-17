@@ -2,14 +2,11 @@ import { Request, Response } from 'express'
 import { createRecord } from './table'
 
 export async function perform(req: Request, res: Response): Promise<void> {
+  res
+    .set('Access-Control-Allow-Origin', 'https://zebraiq.com')
+    .set('Access-Control-Allow-Methods', 'POST')
+  
   switch (req.method) {
-    case 'OPTIONS':
-      res
-        .set('Access-Control-Allow-Origin', 'https://zebraiq.com')
-        .set('Access-Control-Allow-Methods', 'POST')
-        .status(200)
-        .end()
-      break
     case 'POST':
       try {
         await createRecord(req.body)

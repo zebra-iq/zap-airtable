@@ -9,7 +9,7 @@ export async function perform(req: Request, res: Response): Promise<void> {
   switch (req.method) {
     case 'POST':
       try {
-        await createRecord(req.body)
+        await createRecord(JSON.parse(req.body))
         res
           .status(200)
           .type("application/json")
